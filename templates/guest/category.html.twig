@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Category page
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center text-white fw-lighter">{{ category.name }} Pizza's</h1>
+        {% for pizza in category.pizzas %}
+        <div class="col-3 mx-auto d-block mt-2 d-flex">
+            <div class="card" style="width: 15rem;">
+                <img src="{{ asset('img/'~ pizza.image) }}" class="card-img-top" alt="{{ pizza.image }}">
+                <div class="card-body">
+                    <h3 class="card-text text-center fw-light mt-2">{{ pizza.name }}</h3>
+                    <p class="card-text">€{{pizza.price}}</p>
+                    <p class="card-text fw-lighter">{{pizza.description}}</p>
+                    <div class="col text-center">
+                    <a href="{{ path('order_type', {id: pizza.id}) }}" class="btn btn-success">Toevoegen</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
